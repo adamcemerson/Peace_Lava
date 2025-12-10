@@ -32,7 +32,11 @@ The goal is to develop practical experience with:
 - Isolated environment for safe learning  
 
 +------------------+ +------------------------+
+
 | Kali Linux | <----> | OWASP Juice Shop |
+
 | (Attacker VM) | | (Vulnerable Target VM) |
+
 +------------------+ +------------------------+
-| (Host-Only Network)
+
+| (Host-Only Network) |
