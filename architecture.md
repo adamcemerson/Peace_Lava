@@ -8,4 +8,3 @@ flowchart TB
     end
 
     kaliLinux --> webapp
-```
