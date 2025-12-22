@@ -1,0 +1,11 @@
+```mermaid
+flowchart TB
+    subgraph systemContext["Local Machine"]
+        subgraph vm["VirtualBox"]
+            kaliLinux["Kali Linux\n(Attacker)"]
+            webapp["Juice Shop"]
+        end
+    end
+
+    kaliLinux --> webapp
+```
