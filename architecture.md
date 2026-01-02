@@ -1,9 +1,9 @@
 ```mermaid
 flowchart TB
     subgraph systemContext["Local Machine"]
-        subgraph vm["VirtualBox"]
+        subgraph vm["UTM"]
             kaliLinux["Kali Linux (Attacker)"]
-            webapp["Juice Shop (Target)"]
+            webapp["Juice Shop (Target)" on RHEL]
         end
     end
 
