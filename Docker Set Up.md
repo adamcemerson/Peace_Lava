@@ -64,3 +64,63 @@ Expected: only `rhel-*` and possibly `codeready-builder`
 
 ---
 
+## 3. Update System and Reboot
+
+```bash
+sudo dnf update -y
+sudo reboot
+```
+
+Reboot ensures kernel and cgroup settings align with container runtimes.
+
+---
+
+## 4. Add Docker’s Official RHEL Repository
+
+Install required tooling:
+
+```bash
+sudo dnf install -y dnf-plugins-core
+```
+
+Add Docker CE repo:
+
+```bash
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+```
+
+> ⚠️ Note
+> Warnings about *“Unable to read consumer identity”* are expected on unregistered RHEL systems and can be safely ignored.
+
+Verify repo:
+
+```bash
+dnf repolist | grep docker
+```
+
+Expected:
+
+```
+docker-ce-stable
+```
+
+---
+
+## 5. Refresh Metadata
+
+```bash
+sudo dnf clean all
+sudo dnf makecache
+```
+
+---
+
+## 6. Install Docker CE
+
+Install Docker using `--nobest` to avoid RHEL version pinning issues:
+
+```bash
+sudo dnf install -y docker-ce docker-ce-cli containerd.io --nobest
+```
+
+---
