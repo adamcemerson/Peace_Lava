@@ -20,7 +20,8 @@ It intentionally avoids EPEL and Red Hat entitlements to reduce conflicts.
 
 ---
 
-## 1. Clean Out Any Existing Docker Artifacts (Do NOT follow this step if you have a Docker install you are currently using/dependant on)
+## 1. Clean Out Any Existing Docker Artifacts 
+### ⚠️ Do NOT follow this step if you have a Docker install you are currently using/dependant on
 
 Remove any previously installed Docker or container runtime packages:
 
@@ -121,6 +122,56 @@ Install Docker using `--nobest` to avoid RHEL version pinning issues:
 
 ```bash
 sudo dnf install -y docker-ce docker-ce-cli containerd.io --nobest
+```
+
+---
+
+## 7. Enable and Start Docker
+
+```bash
+sudo systemctl enable --now docker
+```
+
+Verify:
+
+```bash
+systemctl status docker
+```
+
+Expected: `active (running)`
+
+---
+
+## 8. Enable Non-Root Docker Access (Personal Use)
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+---
+
+## 9. Validate Installation
+
+```bash
+docker version
+docker run hello-world
+```
+
+Expected:
+
+* Docker client/server version output
+* Successful `hello-world` container run
+
+---
+
+## 10. Baseline Checkpoint (Optional but Recommended)
+
+Capture system state for troubleshooting later:
+
+```bash
+docker info
+dnf history | tail
 ```
 
 ---
